@@ -11,8 +11,10 @@ class MainController extends Controller
       return $this->render('index');
     }
 
-    public function actionBankend(){
-      return $this->render('index');
+    public function actionUploadimg(){
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      return $response;
     }
 
 }
