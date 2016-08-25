@@ -16,5 +16,7 @@ DROP TABLE IF EXISTS `hierarchy`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hierarchy` (
   `tid` int(11) NOT NULL ,
-  `parent` int(11) NOT NULL
+  `parent` int(11) NOT NULL,
+  KEY `flyshow_tid` (`tid`),
+  CONSTRAINT `flyshow_id` FOREIGN KEY (`tid`) REFERENCES `flyshow` (`id`) ON DELETE CASCADE,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
