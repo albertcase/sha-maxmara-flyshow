@@ -6,10 +6,30 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => '/flyshow/main',
+    'modules' => [
+    'flyshow' => [
+        'class' => 'app\modules\flyshow\Module',
+        'layout'=>'main',
+        'defaultRoute' => '/main/index',
+        ],
+      ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'dirkwangbudirk',
+            'enableCsrfValidation' => false,
+            'parsers' => [
+              'application/json' => 'yii\web\JsonParser'
+            ],
+        ],
+        'urlManager' => [
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+            'api/<action>' => '/flyshow/api/<action>',
+            '<action>' => '/flyshow/main/<action>',
+          ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
