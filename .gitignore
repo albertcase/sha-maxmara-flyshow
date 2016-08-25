@@ -1,0 +1,5 @@
+.DS_Store
+.vagrant
+/runtime/
+/web/assets/
+/web/upload
