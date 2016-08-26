@@ -36,6 +36,7 @@ AppAsset::register($this);
 <script type="text/javascript" src="/vstyle/js/jquery.js"></script>
 <script type="text/javascript" src="/vstyle/js/PxLoader.js"></script>
 <script type="text/javascript" src="/vstyle/js/swiper.min.js"></script>
+<script type="text/javascript" src="/vstyle/js/public.js"></script>
 
 <?= $content ?>
 

@@ -1,18 +1,5 @@
 @charset "utf-8";
 
-
-html, body {
-    position: relative;
-    height: 100%;
-}
-body {
-    background: #eee;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color:#000;
-    margin: 0;
-    padding: 0;
-}
 .swiper-container {
     width: 100%;
     height: 100%;
@@ -20,7 +7,7 @@ body {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: #000;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -37,7 +24,7 @@ body {
     align-items: center;
 }
 .swiper-container-v {
-    background: #eee;
+    background: #000;
 }
 
 
@@ -73,15 +60,10 @@ body {
 
 
 
-
-
-
-
-
 .arr{
 	width: 8%;
 	height: 32px;
-	background: url("../img/downArr.png") center no-repeat;
+	background: url("../img/arr_d.png") center no-repeat;
 	background-size: 100% auto;
 	position: absolute;
 	left: 50%;
