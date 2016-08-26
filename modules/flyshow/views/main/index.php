@@ -19,7 +19,10 @@
 	<link rel="stylesheet" type="text/css" href="/vstyle/css/style.css" />
 </head>
 <body>
-
+<script>
+var pagecode = <?php print json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
+console.log(pagecode);
+</script>
 <!-- Swiper -->
 <div class="swiper-container swiper-container-h">
     <div class="swiper-wrapper">
@@ -62,7 +65,7 @@ var swiperV = new Swiper('.swiper-container-v', {
     spaceBetween: 50
 });
 </script>
-	
+
 <!-- 横屏代码 -->
 <div id="orientLayer" class="mod-orient-layer">
     <div class="mod-orient-layer__content">
