@@ -19,9 +19,9 @@ class MainController extends Controller
 
     public function actionBackend(){
       if(\Yii::$app->session->has('user')){
-        return $this->render('index');
+        return $this->renderPartial('backend');
       }else{
-        return $this->render('index');
+        return $this->renderPartial('login');
       }
     }
 }
