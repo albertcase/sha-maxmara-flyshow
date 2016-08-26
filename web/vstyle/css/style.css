@@ -1,0 +1,253 @@
+@charset "utf-8";
+
+
+html, body {
+    position: relative;
+    height: 100%;
+}
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:#000;
+    margin: 0;
+    padding: 0;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-container-v {
+    background: #eee;
+}
+
+
+
+
+
+
+
+/* 6plus */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
+
+}
+
+/* 6 */
+@media only screen and (min-device-width: 375px) and (max-device-width: 410px) and (orientation: portrait) {
+	
+}
+
+/* 5s */
+@media handheld and (min-height:490px),screen and (max-height:510px) {
+	
+}
+
+/* 4s */
+
+@media handheld and (min-height:400px),screen and (max-height:420px) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.arr{
+	width: 8%;
+	height: 32px;
+	background: url("../img/downArr.png") center no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	left: 50%;
+	bottom: 2%;
+	margin: 0 0 0 -4%;
+	z-index: 6;
+
+	animation: arrAni 3s infinite;
+	-moz-animation: arrAni 3s infinite; /* Firefox */
+	-webkit-animation: arrAni 3s infinite; /* Safari and Chrome */
+	-o-animation: arrAni 3s infinite; /* Opera */
+}
+
+.arrWhite{
+	width: 8%;
+	height: 32px;
+	background: url("../img/d_arr.png") center no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	right: 3%;
+	top: 50%;
+	margin: -16px 0 0 0;
+	z-index: 6;
+
+	animation: arrAniWhite 3s infinite;
+	-moz-animation: arrAniWhite 3s infinite; /* Firefox */
+	-webkit-animation: arrAniWhite 3s infinite; /* Safari and Chrome */
+	-o-animation: arrAniWhite 3s infinite; /* Opera */
+}
+
+@keyframes arrAni{
+	0%   { 
+	    transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    transform: translate3d(0, -16px, 0);
+	    opacity: 1;
+	}
+	100%   { 
+	    transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-moz-keyframes arrAni{
+	0%   { 
+	    -moz-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    -moz-transform: translate3d(0, -16px, 0);
+	    opacity: 1;
+	}
+	100%   { 
+	    -moz-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-webkit-keyframes arrAni{
+	0%   { 
+		-webkit-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+		-webkit-transform: translate3d(0, -16px, 0);
+	    opacity: 1;
+	}
+	100%   { 
+		-webkit-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-o-keyframes arrAni{
+	0%   { 
+	    -o-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    -o-transform: translate3d(0, -16px, 0);
+	    opacity: .1;
+	}
+	100%   { 
+	    -o-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+
+
+/* arrWhite */
+@keyframes arrAniWhite{
+	0%   { 
+	    transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    transform: translate3d(-16px, 0, 0);
+	    opacity: 1;
+	}
+	100%   { 
+	    transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-moz-keyframes arrAniWhite{
+	0%   { 
+	    -moz-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    -moz-transform: translate3d(-16px, 0, 0);
+	    opacity: 1;
+	}
+	100%   { 
+	    -moz-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-webkit-keyframes arrAniWhite{
+	0%   { 
+		-webkit-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+		-webkit-transform: translate3d(-16px, 0, 0);
+	    opacity: 1;
+	}
+	100%   { 
+		-webkit-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+@-o-keyframes arrAniWhite{
+	0%   { 
+	    -o-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+	80%   { 
+	    -o-transform: translate3d(0, -16px, 0);
+	    opacity: .1;
+	}
+	100%   { 
+	    -o-transform: translate3d(0, 0, 0);
+	    opacity: .2;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
