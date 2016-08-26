@@ -10,12 +10,12 @@ class MainController extends Controller
     public function actionIndex(){
       $data = array(
         array(
-          'title' => 'title-1',
+          'title' => '首页',
           'img' => '/vstyle/img/homepage.jpg',
           'comment' => '图片来源：Femina',
         ),
         array(
-          'title' => 'title-2',
+          'title' => '大片星赏',
           'img' => '/vstyle/img/loadpage-2.jpg',
           'comment' => '图片来源：Femina',
           'son' => array(
@@ -26,7 +26,7 @@ class MainController extends Controller
           ),
         ),
         array(
-          'title' => 'title-3',
+          'title' => '星动瞬间',
           'img' => '/vstyle/img/loadpage-3.jpg',
           'comment' => '图片来源：Femina',
           'son' => array(
