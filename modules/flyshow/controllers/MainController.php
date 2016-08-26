@@ -17,4 +17,11 @@ class MainController extends Controller
       return $response;
     }
 
+    public function actionBackend(){
+      if(\Yii::$app->session->has('user')){
+        return $this->render('index');
+      }else{
+        return $this->render('index');
+      }
+    }
 }
