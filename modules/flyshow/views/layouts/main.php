@@ -14,7 +14,7 @@ AppAsset::register($this);
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>MAXMARA-FLYSHOW</title>
+	<title>Max Mara群星璀璨</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="format-detection" content="telephone=no">
 	<!--禁用手机号码链接(for iPhone)-->
@@ -26,14 +26,26 @@ AppAsset::register($this);
 	<meta name="Keywords" content="">
 	<meta name="Description" content="...">
 
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-
-
+	<link rel="stylesheet" type="text/css" href="/vstyle/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/vstyle/css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="/vstyle/css/style.css" />
 </head>
-
 <body>
 
-    <?= $content ?>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/vstyle/js/jquery.js"></script>
+<script type="text/javascript" src="/vstyle/js/PxLoader.js"></script>
+<script type="text/javascript" src="/vstyle/js/swiper.min.js"></script>
+
+<?= $content ?>
+
+<!-- 横屏代码 -->
+<div id="orientLayer" class="mod-orient-layer">
+    <div class="mod-orient-layer__content">
+        <i class="icon mod-orient-layer__icon-orient"></i>
+        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+    </div>
+</div>
 
 </body>
 </html>
