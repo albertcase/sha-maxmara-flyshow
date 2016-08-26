@@ -13,30 +13,13 @@
 	<meta name="Keywords" content="">
 	<meta name="Description" content="...">
   <link rel="stylesheet" type="text/css" href="/source/css/pure-min.css" />
+  <link rel="stylesheet" type="text/css" href="/source/css/main.css" />
+  <script type="text/javascript" src="/vstyle/js/jquery.js"></script>
+  <script type="text/javascript" src="/source/js/main.js"></script>
   <style>
   html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
       /* 字体栈写在这: */
       font-family: Georgia, Times, "Times New Roman", serif;
-  }
-  .logimage>img{
-    margin-left: 50px;
-    margin-top:30px
-  }
-  .middendiv{
-    left: 50%;
-    top: 50%;
-    position: absolute;
-  }
-  .logindiv{
-    width:400px;
-    height:400px;
-    margin-left: -200px;
-    margin-top: -200px;
-    background-color: #eee;
-    border:1px solid #eee;
-  }
-  .logindiv>div:nth-child(1){
-    line-height: 30px
   }
   </style>
 </head>
@@ -47,9 +30,24 @@
   <div class="middendiv">
     <div class="logindiv">
       <div>Please Login</div>
-      <div></div>
+      <div>
+          <div class="form-group">
+              <input id="name" type="text" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+              <input id="password" type="password" placeholder="Password">
+          </div>
+
+          <div class="form-group" style="text-align:center">
+              <button type="submit" class="pure-button pure-button-primary" id="loginsubmit">Login</button>
+          </div>
+      </div>
       <div></div>
     </div>
   </div>
+<!-- warningpopup -->
+<div id="warningpopup"></div>
+<!-- warningpopup end -->
 </body>
 </html>

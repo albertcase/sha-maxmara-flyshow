@@ -48,7 +48,7 @@ class MainController extends Controller
     }
 
     public function actionBackend(){
-      if(\Yii::$app->session->has('user')){
+      if(!\Yii::$app->session->has('user')){
         return $this->renderPartial('backend');
       }else{
         return $this->renderPartial('login');
