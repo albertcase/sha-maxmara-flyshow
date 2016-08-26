@@ -43,35 +43,7 @@ class MainController extends Controller
     public function actionUploadimg(){
       $response = \Yii::$app->response;
       $response->format = \yii\web\Response::FORMAT_JSON;
-      $response->data = array(
-        array(
-          'title' => 'title-1',
-          'img' => '/vstyle/img/homepage.jpg',
-          'comment' => '图片来源：Femina',
-        ),
-        array(
-          'title' => 'title-2',
-          'img' => '/vstyle/img/loadpage-2.jpg',
-          'comment' => '图片来源：Femina',
-          'son' => array(
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-          ),
-        ),
-        array(
-          'title' => 'title-3',
-          'img' => '/vstyle/img/loadpage-3.jpg',
-          'comment' => '图片来源：Femina',
-          'son' => array(
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-            array('title' => 'Max Mara群星璀璨', 'img' => '/vstyle/img/pro-1.jpg', 'comment' => '图片来源：Femina'),
-          ),
-        ),
-      );
+      $response->data = array();
       return $response;
     }
 
