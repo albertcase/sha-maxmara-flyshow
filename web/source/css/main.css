@@ -1,0 +1,228 @@
+.logimage>img{
+  margin-left: 50px;
+  margin-top:30px
+}
+
+.middendiv{
+  left: 50%;
+  top: 50%;
+  position: absolute;
+}
+
+.logindiv{
+  width:400px;
+  height:240px;
+  margin-left: -200px;
+  margin-top: -120px;
+  background-color: #ffffff;
+  border:1px solid #eee;
+}
+
+.logindiv > div:nth-child(1),.editslidshow>div:nth-child(1){
+  background-color: #f9fbfe;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  padding-left: 30px;
+}
+
+.logindiv > div:nth-child(2)>.form-group{
+  width:80%;
+}
+
+.logindiv > div:nth-child(2)>.form-group>input{
+  width:100%;
+  height:30px;
+}
+
+.form-group{
+  margin:20px auto;
+}
+
+/*loginpage end*/
+#warningpopup{
+  top:10px;
+  right:20%;
+  position:fixed;
+  z-index: 1055;
+}
+
+.warningbox {
+  width: 100%;
+  /*border-radius: 3px;*/
+  text-align: center;
+  color: white;
+  padding: 15px 15px;
+  font-size: 14px;
+  font-family: 'Open Sans';
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #df7514;
+}
+
+.editslidshow{
+  width:1000px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  border:1px solid #eee;
+}
+
+.editslidshow>div:nth-child(2){
+  padding:20px;
+}
+
+.d-slidbar{
+  height:100px;
+  border: 1px solid #eee;
+  background-color: #eff4fa;
+}
+
+.divcenter{
+  margin:0px auto;
+}
+
+.d-slidbar>div{
+  height:100%;
+  float: left;
+  line-height: 100px;
+}
+
+.d-slidbar>div:nth-child(1){
+  line-height: 100px;
+  padding:0px 4px;
+  margin-right:1px;
+}
+
+.d-slidbar>div:nth-child(1) label{
+    cursor: pointer;
+}
+
+.d-slidbar>div:nth-child(1):hover{
+  background-color: #eee;
+  margin-top:1px;
+  margin-left: 1px;
+  margin-right:0px;
+}
+
+.d-slidbar>div:nth-child(3){
+  line-height: 100px;
+  padding:0px 40px;
+  position:relative;
+}
+
+.d-slidbar>div:nth-child(2)>img{
+  height: 90%;
+  margin-top: 10%;
+}
+
+.d-slidbar>div:nth-child(2){
+  padding:0 40px;
+}
+
+.d-sedit{
+  line-height: 100px;
+  font-size: 90%;
+  color: blue;
+  float: right !important;
+  padding-right: 20px;
+  visibility:hidden;
+}
+
+.d-strush{
+  line-height: 100px;
+  font-size: 90%;
+  color: red;
+  float: right !important;
+  padding-right: 20px;
+  visibility:hidden;
+}
+
+.d-slidbar:hover .d-sedit,.d-lastslide:hover .d-sedit,.d-lastslide:hover .d-strush{
+  visibility: visible;
+}
+
+.d-sedit>i:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.d-strush>i:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.d-scbu{
+  display: none;
+}
+
+.d-scboxinput:checked + .d-slidbar + .d-slidbox{
+  height:0px;
+  overflow-y: hidden;
+  transition: height 0.3s;
+  -webkit-transition: height 0.3s; /* Safari */
+}
+
+.d-scboxinput + .d-slidbar + .d-slidbox{
+  margin-left:20px;
+  transition: height 0.3s;
+  -webkit-transition: height 0.3s; /* Safari */
+}
+
+.d-scboxinput + .d-slidbar .scsleft{
+  display: block;
+}
+
+.d-scboxinput:checked + .d-slidbar .scsleft{
+  display: none !important;
+}
+
+.d-scboxinput:checked + .d-slidbar .scsdown{
+  display: block !important;
+}
+
+.d-lastslide{
+  height:100px;
+  border: 1px solid #eee;
+  background-color: #eff4fa;
+}
+
+.d-lastslide>div{
+  float:left;
+}
+
+.d-lastslide>div:nth-child(1){
+  padding:0px 40px;
+}
+
+.d-lastslide img{
+    height: 90px;
+    margin-top: 5px;
+}
+
+.d-lastslide>div:nth-child(2){
+  line-height: 50px;
+  padding:10px 10px;
+  max-width: 200px;
+  max-height: 50px;
+  overflow-y: auto;
+}
+
+.d-lastslide>div:nth-child(3){
+  padding:20px 10px;
+  max-width: 300px;
+  max-height: 50px;
+  overflow-y: auto;
+}
+
+.d-sdrag{
+  background: #eff4fa url("/source/img/justify.png") no-repeat center;
+  width:30px;
+  height: 100%;
+  float: right !important;
+  cursor: move;
+}
+
+.d-sdragmove{
+  z-index: 100;
+  width: 918px;
+}

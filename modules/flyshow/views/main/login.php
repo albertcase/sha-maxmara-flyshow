@@ -13,8 +13,41 @@
 	<meta name="Keywords" content="">
 	<meta name="Description" content="...">
   <link rel="stylesheet" type="text/css" href="/source/css/pure-min.css" />
+  <link rel="stylesheet" type="text/css" href="/source/css/main.css" />
+  <script type="text/javascript" src="/vstyle/js/jquery.js"></script>
+  <script type="text/javascript" src="/source/js/main.js"></script>
+  <style>
+  html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+      /* 字体栈写在这: */
+      font-family: Georgia, Times, "Times New Roman", serif;
+  }
+  </style>
 </head>
 <body>
-  <>
+  <div class="logimage">
+    <img src="/source/img/maxmara.png"/>
+  </div>
+  <div class="middendiv">
+    <div class="logindiv">
+      <div>Please Login</div>
+      <div>
+          <div class="form-group">
+              <input id="name" type="text" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+              <input id="password" type="password" placeholder="Password">
+          </div>
+
+          <div class="form-group" style="text-align:center">
+              <button type="submit" class="pure-button pure-button-primary" id="loginsubmit">Login</button>
+          </div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+<!-- warningpopup -->
+<div id="warningpopup"></div>
+<!-- warningpopup end -->
 </body>
 </html>
