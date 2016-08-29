@@ -51,4 +51,20 @@ class ApiController extends Controller
       $response->data = $form->doData();
       return $response;
     }
+
+    public function actionItemsget(){
+      $form = new Forms\itemsGet();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionMitemget(){
+      $form = new Forms\mitemGet();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
 }

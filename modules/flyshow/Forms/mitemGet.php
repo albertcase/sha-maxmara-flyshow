@@ -12,17 +12,13 @@ class mitemGet extends Model
     public function rules()
     {
         return [
-            ['imagepath', 'filter', 'filter' => 'trim'],
-            ['imagepath', 'required'],
 
-            ['title', 'filter', 'filter' => 'trim'],
-            ['title', 'required'],
         ];
     }
 
     public function initPost()
     {
-      $this->load(array("mtimeUpdate" => Yii::$app->request->post()));
+      $this->load(array("mitemGet" => Yii::$app->request->post()));
     }
 
     public function doData()
@@ -35,14 +31,15 @@ class mitemGet extends Model
 
     public function updateall(){
       $_db = new database();
-      if($_db->searchData(array('id' => $this->mid) ,array('path', 'name'), 'mitem'), 'mitem'))
+      if($data = $_db->searchData(array('id' => $this->mid) ,array('path', 'name'), 'flyshow'))
         return array(
           'code' => '10',
-          'msg' => 'update success',
+          'data' => $data[0],
+          'msg' => 'get success',
         );
       return array(
         'code' => '9',
-        'msg' => 'update failed',
+        'msg' => 'get failed',
       );
     }
 

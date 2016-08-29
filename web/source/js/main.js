@@ -33,24 +33,11 @@ var popup = {
   openwarning:function(text){
     this.warningshow('#warningpopup',text);
   },
-  opencomfirm:function(text,fun){
-    var a = '<div>'+text+'</div>';
-    a += '<div>';
-    a += '<button type="button" onclick="popup.closecomfirm()" class="btn btn-default btn-sm">CANCEL</button>&nbsp;&nbsp;';
-    a += '<button type="button" onclick="'+fun+'" class="btn btn-primary btn-sm">TRUE</button>';
-    a += '</div>';
-    $("#comfirmpopup > .comfirmpopup").html(a);
-    $("#comfirmpopup").show();
-  },
-  closecomfirm:function(){
-    $("#comfirmpopup>.comfirmpopu").empty();
-    $("#comfirmpopup").hide();
-  },
   openloading:function(){
-    $("#loadingpopup").show();
+    $(".remodal-overlay").show();
   },
   closeloading:function(){
-    $("#loadingpopup").hide();
+    $(".remodal-overlay").hide();
   }
 };
 
@@ -71,31 +58,29 @@ var popup = {
   var dmhtml= {
     mcontect: function(data){
       var a = "";
-      if(data.hasOwnProperty("img"))
-        a += '<div><img src="'+data.img+'"/></div>';
-      if(data.hasOwnProperty("title"))
-        a += '<div>'+data.title+'</div>';
+      if(data.hasOwnProperty("path"))
+        a += '<div><img src="'+data.path+'"/></div>';
+      if(data.hasOwnProperty("name"))
+        a += '<div>'+data.name+'</div>';
       if(data.hasOwnProperty("comment"))
         a += '<div>'+data.comment+'</div>';
       a += '<div class="d-sedit"><i>edit</i></div>';
+      a += '<div class="d-add"><i>addsub</i></div>';
       return a;
     },
     subslidbar: function(data){
       var a = "";
-      var la = data.length;
-      for(var i=0; i<la; i++){
-        a += '<div class="d-lastslide">';
-        if(data[i].hasOwnProperty("img"))
-          a += '<div><img src="'+data[i].img+'"/></div>';
-        if(data[i].hasOwnProperty("title"))
-          a += '<div>'+data[i].title+'</div>';
-        if(data[i].hasOwnProperty("comment"))
-          a += '<div>'+data[i].comment+'</div>';
+        a += '<div class="d-lastslide" sid="'+data.id+'">';
+        if(data.hasOwnProperty("path"))
+          a += '<div><img src="'+data.path+'"/></div>';
+        if(data.hasOwnProperty("name"))
+          a += '<div>'+data.name+'</div>';
+        if(data.hasOwnProperty("comment"))
+          a += '<div>'+data.comment+'</div>';
         a += '<div class="d-sdrag"></div>';
         a += '<div class="d-strush"><i>delete</i></div>';
         a += '<div class="d-sedit"><i>edit</i></div>';
         a += '</div>';
-      }
       return a;
     },
     slidbar: function(data, deep){
@@ -104,22 +89,23 @@ var popup = {
       var la = data.length;
       var a = ""
       for(var i=0; i<la; i++){
-  a += "<input id='s"+deep+i+"' type='checkbox' class='d-scbu d-scboxinput' />";
-  a += '<div class="d-slidbar">';
-  a += "<div>";
-  a += "<label for='s"+deep+i+"' class='d-scbox'>";
-  a += '<b class="d-scbu scsleft">▷</b>';
-  a += '<b class="d-scbu scsdown">▽</b>';
-  a += '</label>';
-  a += '</div>';
-  a += self.mcontect(data[i]);
-  a += '</div>';
-  a += '<div class="d-slidbox">';
-  if(data[i].hasOwnProperty("mson"))
-    a += self.slidbar(data[i]["mson"], (deep+1));
-  if(data[i].hasOwnProperty("son"))
-    a += self.subslidbar(data[i]["son"]);
-  a += '</div>';
+        if(data[i].type == "mslid"){
+          a += "<input id='s"+d+i+"' type='checkbox' class='d-scbu d-scboxinput' />";
+          a += '<div class="d-slidbar" sid="'+data[i].id+'">';
+          a += "<div>";
+          a += "<label for='s"+d+i+"' class='d-scbox'>";
+          a += '<b class="d-scbu scsleft">▷</b>';
+          a += '<b class="d-scbu scsdown">▽</b>';
+          a += '</label>';
+          a += '</div>';
+          a += self.mcontect(data[i]);
+          a += '</div>';
+          a += '<div class="d-slidbox">';
+          a += self.slidbar(data[i]["son"], (d+1));
+          a += '</div>';
+        }
+        if(data[i].type == "lslid")
+          a += self.subslidbar(data[i]);
       }
       return a;
     },
@@ -216,9 +202,46 @@ var popup = {
       $(self.control).on("mousedown" ,".d-sdrag", function(e){
         self.initdrag($(this),e);
       });
-      $(".editslidshow").on("click", "#d-editshow>.d-slidbar>.d-sedit>i", function(){
-        var inst = $('[data-remodal-id=S1modal]').remodal();
-        inst.open();
+    }
+  };
+
+  var dedit = {
+    buildS1: function(data){
+      var a1 = '<img src="'+data.path+'" />';
+      a1 += '<span>×</span>';
+      $('[data-remodal-id=S1modal] .editimg').html(a1);
+      var a2 = '<dl>';
+      a2 += '<dt style="width:60px">Name:</dt>';
+      a2 += '<dd><input id="msname" type="text" placeholder="Name" value="'+data.name+'"></dd>';
+      a2 += '</dl>';
+      $('[data-remodal-id=S1modal] .editconect').html(a2);
+    },
+    ajaxMitemGet: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/mitemget",
+        type: "post",
+        dataType:'json',
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            console.log(data);
+            dedit.buildS1(data.data);
+            var inst = $('[data-remodal-id=S1modal]').remodal();
+            inst.open();
+            return true;
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning(data.msg);
+        }
+      });
+    },
+    onload: function(){
+      $(".editslidshow").on("mouseup", "#d-editshow>.d-slidbar>.d-sedit>i", function(){
+        dedit.ajaxMitemGet();
       });
       $("#d-editshow").on("click", ".d-slidbox>.d-slidbar>.d-sedit>i", function(){
         var inst = $('[data-remodal-id=S2modal]').remodal();
@@ -228,10 +251,12 @@ var popup = {
         var inst = $('[data-remodal-id=S3modal]').remodal();
         inst.open();
       });
-      dmhtml.buildlist(pagecode, $("#d-editshow"));
     }
   }
+
   $(function(){
+    dmhtml.buildlist(pagecode, $("#d-editshow"));
     main.onload();
+    dedit.onload();
   });
 })(jQuery, popup);

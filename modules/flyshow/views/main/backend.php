@@ -126,11 +126,19 @@
 <div class="remodal-bg">
 	<div class="remodal" data-remodal-id="S1modal">
 	  <button data-remodal-action="close" class="remodal-close"></button>
-	  <h1>S1Remodal</h1>
-	  <p>
-	    Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
-	  </p>
+	  <h1>Edit First Page</h1>
+	  <div class="editimg">
+			<img src="/vstyle/img/homepage.jpg" />
+			<span>×</span>
+		</div>
 	  <br>
+		<div class="editconect">
+			<dl>
+				<dt style="width:60px">Name:</dt>
+				<dd><input id="sname" type="text" placeholder="Name"></dd>
+			</dl>
+		</div>
+		<br>
 	  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
 	  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
 	</div>
@@ -157,6 +165,6 @@
 		<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
 	</div>
 </div>
-	<button class="d-confirm">OK</button>
+<button onclick="dedit.ajaxMitemGet()">ok</button>
 </body>
 </html>
