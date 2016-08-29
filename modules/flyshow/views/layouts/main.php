@@ -38,6 +38,16 @@ AppAsset::register($this);
 <script type="text/javascript" src="/vstyle/js/swiper.min.js"></script>
 <script type="text/javascript" src="/vstyle/js/public.js"></script>
 
+<div class="loading">
+	<div class="cssload-loader">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
 <?= $content ?>
 
 <!-- 横屏代码 -->
