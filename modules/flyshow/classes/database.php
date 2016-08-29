@@ -13,7 +13,7 @@ class database
 
     public function checkData(array $data=array() , $table){
     	$rows = (new \yii\db\Query())
-    	    ->select(array('id'))
+    	    ->select(array())
     	    ->from($table)
     	    ->where($this->buildparm($data), $this->buildval($data))
     	    ->limit(1)
@@ -25,7 +25,7 @@ class database
 
     public function getcount($table , $data=array()){
       $rows = (new \yii\db\Query())
-          ->select(array('id'))
+          ->select(array())
           ->from($table)
           ->where($this->buildparm($data), $this->buildval($data));
       return $rows->count();
@@ -49,8 +49,15 @@ class database
        return false;
     }
 
+    public function getLastid($id = ''){
+      return $this->_db->getLastInsertID($id);
+    }
+
     public function insertData(array $data=array(), $table){
-    	  return $this->_db->createCommand()->insert($table, $data)->execute();
+    	  $result = $this->_db->createCommand()->insert($table, $data)->execute();
+        if($result)
+          return $this->_db->getLastInsertID();
+        return false;
     }
 
     public function insertUData(array $data=array(), $table){
