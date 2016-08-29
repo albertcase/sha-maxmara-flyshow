@@ -153,7 +153,7 @@ var pfun = {
             loadCallback();
             
         } , function (p){
-            //console.log(p);
+            console.log(p);
         });
     }
 

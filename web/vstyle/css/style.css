@@ -1,5 +1,75 @@
 @charset "utf-8";
 
+html, body {
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+.dreambox{
+	width: 93%;
+	height: 100%;
+	display: inline-block;
+}
+
+
+/* ------ nav ------ */
+.burger {
+	width: 36%;
+	height: 100px;
+	position: fixed;
+	left: 3%;
+	top: 1em;
+	z-index: 11;
+}
+
+.burger_con{
+	width: 20%;
+	height: 32px;
+	position: relative;
+	background: url("../img/nav.png") no-repeat;
+	background-size: 100% auto;
+}
+
+.menu{ 
+	width: 32%;
+	position: fixed;
+	left: 3.5%;
+	top: 6.5%;
+	z-index: 11;
+	display: none;
+}
+.menu li{
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	color: #fff;
+	font-size: 1.2rem;
+	-moz-box-shadow:0 0 6px #fff inset;              
+    -webkit-box-shadow:0 0 6px #fff inset;           
+    box-shadow:0 0 6px #fff inset; 
+	background: rgba(255,255,255,0.25);
+	border-radius: 0;
+	opacity: 1;
+	display: inline-block;
+}
+
+.menu li:nth-child(1){
+	display: none;
+}
+
+.menu li.swiper-pagination-bullet-active{
+	text-shadow: 0 0 16px #ffffbe;
+	color:#fff;
+	font-weight: bold;
+	font-size: 1.4rem;
+}
+
+
+
+
+
 .swiper-container {
     width: 100%;
     height: 100%;
@@ -8,6 +78,7 @@
     text-align: center;
     font-size: 18px;
     background: #000;
+    height: 100%;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -23,11 +94,35 @@
     -webkit-align-items: center;
     align-items: center;
 }
+
+.prolist{
+	display: inline-block;
+	position: relative;
+}
+
+.albumlist .swiper-slide span{
+	width: 100%;
+	text-align: left;
+	color: #fff;
+	font-size: 1.4rem;
+	padding: 6px 0;
+	display: inline-block;
+}
+
 .swiper-container-v {
     background: #000;
 }
 
 
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+	background: url("../img/arr_r.png") center no-repeat;
+	background-size: 56% auto;
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+	background: url("../img/arr_l.png") center no-repeat;
+	background-size: 56% auto;
+}
 
 
 
@@ -61,14 +156,14 @@
 
 
 .arr{
-	width: 8%;
+	width: 6%;
 	height: 32px;
 	background: url("../img/arr_d.png") center no-repeat;
 	background-size: 100% auto;
 	position: absolute;
 	left: 50%;
-	bottom: 2%;
-	margin: 0 0 0 -4%;
+	bottom: 0%;
+	margin: 0 0 0 -3%;
 	z-index: 6;
 
 	animation: arrAni 3s infinite;
@@ -227,6 +322,183 @@
 
 
 
+
+
+/* loading */
+
+.loading{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.cssload-loader {
+    width: 60px;
+    height: 6px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+    z-index: 100;
+    top: 50%;
+    margin: -3px 0 0 0;
+}
+
+.cssload-loader > div {
+    content: " ";
+    width: 6px;
+    height: 6px;
+    background: rgb(33,150,243);
+    border-radius: 100%;
+    position: absolute;
+    animation: cssload-shift 2.3s linear infinite;
+        -o-animation: cssload-shift 2.3s linear infinite;
+        -ms-animation: cssload-shift 2.3s linear infinite;
+        -webkit-animation: cssload-shift 2.3s linear infinite;
+        -moz-animation: cssload-shift 2.3s linear infinite;
+}
+.cssload-loader > div:nth-of-type(1) {
+    animation-delay: -0.46s;
+        -o-animation-delay: -0.46s;
+        -ms-animation-delay: -0.46s;
+        -webkit-animation-delay: -0.46s;
+        -moz-animation-delay: -0.46s;
+}
+.cssload-loader > div:nth-of-type(2) {
+    animation-delay: -0.92s;
+        -o-animation-delay: -0.92s;
+        -ms-animation-delay: -0.92s;
+        -webkit-animation-delay: -0.92s;
+        -moz-animation-delay: -0.92s;
+}
+.cssload-loader > div:nth-of-type(3) {
+    animation-delay: -1.38s;
+        -o-animation-delay: -1.38s;
+        -ms-animation-delay: -1.38s;
+        -webkit-animation-delay: -1.38s;
+        -moz-animation-delay: -1.38s;
+}
+.cssload-loader > div:nth-of-type(4) {
+    animation-delay: -1.84s;
+        -o-animation-delay: -1.84s;
+        -ms-animation-delay: -1.84s;
+        -webkit-animation-delay: -1.84s;
+        -moz-animation-delay: -1.84s;
+}
+
+
+
+@keyframes cssload-shift {
+    0% {
+        left: -36%;
+        opacity: 0;
+        background-color: rgb(255,255,255);
+    }
+    10% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 127%;
+        background-color: rgb(254,205,80);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes cssload-shift {
+    0% {
+        left: -36%;
+        opacity: 0;
+        background-color: rgb(255,255,255);
+    }
+    10% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 127%;
+        background-color: rgb(254,205,80);
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes cssload-shift {
+    0% {
+        left: -36%;
+        opacity: 0;
+        background-color: rgb(255,255,255);
+    }
+    10% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 127%;
+        background-color: rgb(254,205,80);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes cssload-shift {
+    0% {
+        left: -36%;
+        opacity: 0;
+        background-color: rgb(255,255,255);
+    }
+    10% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 127%;
+        background-color: rgb(254,205,80);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes cssload-shift {
+    0% {
+        left: -36%;
+        opacity: 0;
+        background-color: rgb(255,255,255);
+    }
+    10% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 127%;
+        background-color: rgb(254,205,80);
+        opacity: 0;
+    }
+}
 
 
 
