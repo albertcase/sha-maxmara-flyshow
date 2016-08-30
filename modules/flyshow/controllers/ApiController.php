@@ -67,4 +67,31 @@ class ApiController extends Controller
       $response->data = $form->doData();
       return $response;
     }
+
+    public function actionSitemget(){
+      $form = new Forms\sitemGet();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionLitemget(){
+      $form = new Forms\litemGet();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionFileupload(){
+      $form = new Forms\fileUpload();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
 }

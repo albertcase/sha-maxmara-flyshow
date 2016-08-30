@@ -41,6 +41,52 @@ var popup = {
   }
 };
 
+var fileupload = {
+  sendfiles:function(data, obj){
+	var self=this;
+  // popup.openprogress();
+	var formData = new FormData();
+	var xhr = new XMLHttpRequest();
+	formData.append("fileUpload[uploadfile]",data);
+	xhr.open ('POST',"/api/fileupload");
+	xhr.onload = function(event) {
+    // popup.closeprogress();
+    if (xhr.status === 200) {
+      var aa = JSON.parse(xhr.responseText);
+      if(aa.code == '10'){
+        fileupload.replaceinput(aa.path,obj);
+        popup.openwarning('upload success');
+        return true;
+      }
+      popup.openwarning(aa.msg);
+    } else {
+      popup.openwarning('upload error');
+    }
+  };
+    xhr.upload.onprogress = self.updateProgress;
+    xhr.send (formData);
+  },
+  updateProgress:function(event){
+    if (event.lengthComputable){
+        var percentComplete = event.loaded;
+        var percentCompletea = event.total;
+        var press = (percentComplete*100/percentCompletea).toFixed(2);//onprogress show
+      	// popup.goprogress(press);
+    }
+  },
+  replaceinput:function(url ,obj){
+    var a = '<img src="'+url+'" /><span class="d-imageremove">×</span>';
+    obj.after(a);
+    obj.remove();
+  },
+  replaceimage:function(obj){
+    var a = '<input type="file" name="uploadfile" class="newsfile"/>';
+    obj.prev().remove();
+    obj.after(a);
+    obj.remove();
+  }
+};
+
 (function($, popup){
   $(function(){
     $("#loginsubmit").click(function(){
@@ -50,7 +96,7 @@ var popup = {
   });
 })(jQuery, popup);
 
-(function($, popup){
+(function($, popup, fileupload){
   var mouseinfo = {
     clientX: null,
     clientY: null,
@@ -208,13 +254,41 @@ var popup = {
   var dedit = {
     buildS1: function(data){
       var a1 = '<img src="'+data.path+'" />';
-      a1 += '<span>×</span>';
+      a1 += '<span class="d-imageremove">×</span>';
       $('[data-remodal-id=S1modal] .editimg').html(a1);
       var a2 = '<dl>';
-      a2 += '<dt style="width:60px">Name:</dt>';
-      a2 += '<dd><input id="msname" type="text" placeholder="Name" value="'+data.name+'"></dd>';
+      a2 += '<dt>Name:</dt>';
+      a2 += '<dd><input class="msname" type="text" placeholder="Name" value="'+data.name+'"></dd>';
       a2 += '</dl>';
       $('[data-remodal-id=S1modal] .editconect').html(a2);
+    },
+    buildS2: function(data){
+      var a1 = '<img src="'+data.path+'" />';
+      a1 += '<span class="d-imageremove">×</span>';
+      $('[data-remodal-id=S2modal] .editimg').html(a1);
+      var a2 = '<dl>';
+      a2 += '<dt>Name:</dt>';
+      a2 += '<dd><input class="msname" type="text" placeholder="Name" value="'+data.name+'"></dd>';
+      a2 += '</dl>';
+      $('[data-remodal-id=S2modal] .editconect').html(a2);
+    },
+    buildS3: function(data){
+      var a1 = '<img src="'+data.path+'" />';
+      a1 += '<span class="d-imageremove">×</span>';
+      $('[data-remodal-id=S3modal] .editimg').html(a1);
+      var a2 = '<dl>';
+      a2 += '<dt>Name:</dt>';
+      a2 += '<dd><input class="msname" type="text" placeholder="Name" value="'+data.name+'"></dd>';
+      a2 += '</dl><dl>';
+      a2 += '<dt>Comment:</dt>';
+      a2 += '<dd><input class="mscomment" type="text" placeholder="Comment" value="'+data.comment+'"></dd>';
+      a2 += '</dl>';
+      $('[data-remodal-id=S3modal] .editconect').html(a2);
+    },
+    replaceimg: function(obj){
+      var a = "";
+      var a = '<input type="file" />';
+      obj.html(a);
     },
     ajaxMitemGet: function(){
       popup.openloading();
@@ -235,22 +309,168 @@ var popup = {
         },
         error: function(){
           popup.closeloading();
+          popup.openwarning("unkonw error");
+        }
+      });
+    },
+    ajaxSitemGet: function(id){
+      popup.openloading();
+      $.ajax({
+        url: "/api/sitemget",
+        type: "post",
+        dataType:'json',
+        data:{
+          mid: id
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            dedit.buildS2(data.data);
+            $('[data-remodal-id=S2modal]').attr("sid" ,data.data.id);
+            var inst = $('[data-remodal-id=S2modal]').remodal();
+            inst.open();
+            return true;
+          }
           popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxLitemGet: function(id){
+      popup.openloading();
+      $.ajax({
+        url: "/api/litemget",
+        type: "post",
+        dataType:'json',
+        data:{
+          mid: id
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            console.log(data);
+            dedit.buildS3(data.data);
+            $('[data-remodal-id=S3modal]').attr("sid", data.data.id);
+            var inst = $('[data-remodal-id=S3modal]').remodal();
+            inst.open();
+            return true;
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxmtemUpdate: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/mitemupdate",
+        type: "post",
+        dataType:'json',
+        data:{
+          imagepath: $('[data-remodal-id=S1modal] .editimg img').attr("src"),
+          title: $('[data-remodal-id=S1modal] .editconect .msname').val(),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            var inst = $('[data-remodal-id=S1modal]').remodal();
+            inst.close();
+            window.location.reload();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxstemUpdate: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/sitemupdate",
+        type: "post",
+        dataType:'json',
+        data:{
+          imagepath: $('[data-remodal-id=S2modal] .editimg img').attr("src"),
+          title: $('[data-remodal-id=S2modal] .editconect .msname').val(),
+          mid: $('[data-remodal-id=S2modal]').attr("sid"),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            var inst = $('[data-remodal-id=S2modal]').remodal();
+            inst.close();
+            window.location.reload();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxltemUpdate: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/litemupdate",
+        type: "post",
+        dataType:'json',
+        data:{
+          imagepath: $('[data-remodal-id=S3modal] .editimg img').attr("src"),
+          comment: $('[data-remodal-id=S3modal] .editconect .mscomment').val(),
+          title: $('[data-remodal-id=S3modal] .editconect .msname').val(),
+          mid: $('[data-remodal-id=S3modal]').attr("sid"),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            var inst = $('[data-remodal-id=S3modal]').remodal();
+            inst.close();
+            window.location.reload();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
         }
       });
     },
     onload: function(){
-      $(".editslidshow").on("mouseup", "#d-editshow>.d-slidbar>.d-sedit>i", function(){
+      var self = this;
+      $(".editslidshow").on("click", "#d-editshow>.d-slidbar>.d-sedit>i", function(){
         dedit.ajaxMitemGet();
       });
       $("#d-editshow").on("click", ".d-slidbox>.d-slidbar>.d-sedit>i", function(){
-        var inst = $('[data-remodal-id=S2modal]').remodal();
-        inst.open();
+        dedit.ajaxSitemGet($(this).parent().parent().attr("sid"));
       });
       $("#d-editshow").on("click", ".d-lastslide>.d-sedit>i", function(){
-        var inst = $('[data-remodal-id=S3modal]').remodal();
-        inst.open();
+        dedit.ajaxLitemGet($(this).parent().parent().attr("sid"));
       });
+      $("body").on("click", ".d-imageremove", function(){
+        fileupload.replaceimage($(this));
+      });
+      $("body").on("change", ".newsfile", function(){
+        fileupload.sendfiles($(this)[0].files[0], $(this));
+      });
+      $("#S1modalsave").click(function(){
+        self.ajaxmtemUpdate();
+      });
+      $("#S2modalsave").click(function(){
+        self.ajaxstemUpdate();
+      });
+      $("#S3modalsave").click(function(){
+        self.ajaxltemUpdate();
+      })
+
     }
   }
 
@@ -259,4 +479,4 @@ var popup = {
     main.onload();
     dedit.onload();
   });
-})(jQuery, popup);
+})(jQuery, popup, fileupload);

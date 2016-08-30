@@ -134,37 +134,54 @@
 	  <br>
 		<div class="editconect">
 			<dl>
-				<dt style="width:60px">Name:</dt>
-				<dd><input id="sname" type="text" placeholder="Name"></dd>
+				<dt>Name:</dt>
+				<dd><input class="sname" type="text" placeholder="Name"></dd>
 			</dl>
 		</div>
 		<br>
 	  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-	  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+	  <button class="remodal-confirm" id="S1modalsave">SAVE</button>
 	</div>
 	<!-- //s1 -->
 	<div class="remodal" data-remodal-id="S2modal">
 		<button data-remodal-action="close" class="remodal-close"></button>
-		<h1>S2Remodal</h1>
-		<p>
-			Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
-		</p>
+		<h1>Edit</h1>
+		<div class="editimg">
+			<img src="/vstyle/img/homepage.jpg" />
+			<span>×</span>
+		</div>
+	  <br>
+		<div class="editconect">
+			<dl>
+				<dt>Name:</dt>
+				<dd><input class="sname" type="text" placeholder="Name"></dd>
+			</dl>
+		</div>
 		<br>
 		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-		<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+		<button id="S2modalsave" class="remodal-confirm">SAVE</button>
 	</div>
 	<!-- S2 -->
 	<div class="remodal" data-remodal-id="S3modal">
 		<button data-remodal-action="close" class="remodal-close"></button>
-		<h1>S3Remodal</h1>
-		<p>
-			Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
-		</p>
+		<h1>Edit</h1>
+		<div class="editimg">
+			<input type="file" />
+		</div>
+	  <br>
+		<div class="editconect">
+			<dl>
+				<dt>Name:</dt>
+				<dd><input class="sname" type="text" placeholder="Name"></dd>
+			</dl>
+		</div>
 		<br>
 		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-		<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+		<button id="S3modalsave" class="remodal-confirm">SAVE</button>
 	</div>
 </div>
-<button onclick="dedit.ajaxMitemGet()">ok</button>
+<!-- warningpopup -->
+<div id="warningpopup"></div>
+<!-- warningpopup end -->
 </body>
 </html>
