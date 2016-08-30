@@ -469,7 +469,7 @@ var fileupload = {
       });
       $("#S3modalsave").click(function(){
         self.ajaxltemUpdate();
-      })
+      });
 
     }
   }
