@@ -39,6 +39,7 @@ class itemsGet extends Model
       return array(
         'code' => '9',
         'msg' => 'there are not any slide show data',
+        'data' => array()
       );
     }
 
@@ -76,11 +77,21 @@ class itemsGet extends Model
       return $out;
     }
 
+    public function widthFmat($shier,$keys){
+      $out = array();
+      foreach($shier as $x){
+        $out[$keys[$x]['width']] = $x;
+      }
+      ksort($out);
+      return $out;
+    }
+
     public function nFmt($n, $nid, $keys, $hier){
       if(isset($hier[$nid])){
         $n['type'] = 'mslid';
         $n['son'] = array();
-        foreach($hier[$nid] as $x){
+        $hi = $this->widthFmat($hier[$nid],$keys);
+        foreach($hi as $x){
           array_push($n['son'], $this->nFmt($keys[$x], $x, $keys, $hier));
         }
       }else{

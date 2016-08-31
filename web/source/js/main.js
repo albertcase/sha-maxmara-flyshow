@@ -34,10 +34,10 @@ var popup = {
     this.warningshow('#warningpopup',text);
   },
   openloading:function(){
-    $(".remodal-overlay").show();
+    $("#loadingpopup").show();
   },
   closeloading:function(){
-    $(".remodal-overlay").hide();
+    $("#loadingpopup").hide();
   }
 };
 
@@ -45,12 +45,14 @@ var fileupload = {
   sendfiles:function(data, obj){
 	var self=this;
   // popup.openprogress();
+  popup.openloading();
 	var formData = new FormData();
 	var xhr = new XMLHttpRequest();
 	formData.append("fileUpload[uploadfile]",data);
 	xhr.open ('POST',"/api/fileupload");
 	xhr.onload = function(event) {
     // popup.closeprogress();
+    popup.closeloading();
     if (xhr.status === 200) {
       var aa = JSON.parse(xhr.responseText);
       if(aa.code == '10'){
@@ -136,7 +138,11 @@ var fileupload = {
       var a = ""
       for(var i=0; i<la; i++){
         if(data[i].type == "mslid"){
-          a += "<input id='s"+d+i+"' type='checkbox' class='d-scbu d-scboxinput' />";
+          var o = "";
+          console.log(dedit.openstatus);
+          if(dedit.openstatus.hasOwnProperty(data[i].id) && dedit.openstatus[data[i].id] == 1)
+            o = "checked=checked";
+          a += "<input id='s"+d+i+"' type='checkbox' class='d-scbu d-scboxinput' "+o+"/>";
           a += '<div class="d-slidbar" sid="'+data[i].id+'">';
           a += "<div>";
           a += "<label for='s"+d+i+"' class='d-scbox'>";
@@ -161,6 +167,7 @@ var fileupload = {
     }
 };
   var main = {
+    movestatus:0,
     sheight: null,
     swidth: null,
     smoveh: 0,
@@ -217,13 +224,20 @@ var fileupload = {
     },
     removmove: function(){
       var self = this;
+      if(self.movestatus == 0) //only run this function onece
+        return true;
+      else
+        self.movestatus = 0;
       var list = $(".d-sdragmove").parent().children();
       $(".d-sdragmove").css({"position": "static"});
       list.eq(self.SmNo).css({"margin-top": "0px","margin-bottom": 0});
-      if(self.newOm < 0){//move curreny obj
-        $(".d-sdragmove").prependTo($(".d-sdragmove").parent());
-      }else{
-        list.eq(self.newOm).after($(".d-sdragmove"));
+      if(self.newOm != $(".d-sdragmove").index()){
+        if(self.newOm < 0){//move curreny obj
+          $(".d-sdragmove").prependTo($(".d-sdragmove").parent());
+        }else{
+            list.eq(self.newOm).after($(".d-sdragmove"));
+        }
+        dedit.newRanking($(".d-sdragmove"));
       }
       document.getElementsByTagName("body")[0].removeEventListener("mousemove", self.movfun);
       $(".d-sdragmove").removeClass("d-sdragmove");
@@ -235,6 +249,7 @@ var fileupload = {
       self.sObjh = obj.parent().offset();
       self.smoveh = e.clientY;
       obj.parent().addClass("d-sdragmove");
+      this.movestatus = 1;
       document.getElementsByTagName("body")[0].addEventListener("mousemove", self.movfun);
       obj.parent().one("mouseout",function(){
         self.removmove();
@@ -252,6 +267,19 @@ var fileupload = {
   };
 
   var dedit = {
+    openstatus: {},
+    nlist: {},
+    newRanking: function(obj){
+      var self = this;
+      $(".changeranking").show();
+      var sid = obj.parent().prev().attr("sid");
+      self.nlist[sid] = [];
+      obj.parent().children('[sid]').each(function(){
+          var sid = $(this).parent().prev().attr("sid");
+          dedit.nlist[sid].push($(this).attr("sid"));
+      });
+      console.log(self.nlist);
+    },
     buildS1: function(data){
       var a1 = '<img src="'+data.path+'" />';
       a1 += '<span class="d-imageremove">×</span>';
@@ -284,6 +312,18 @@ var fileupload = {
       a2 += '<dd><input class="mscomment" type="text" placeholder="Comment" value="'+data.comment+'"></dd>';
       a2 += '</dl>';
       $('[data-remodal-id=S3modal] .editconect').html(a2);
+    },
+    buildS4: function(){
+      var a1 = '<input type="file" name="uploadfile" class="newsfile"/>';
+      $('[data-remodal-id=S4modal] .editimg').html(a1);
+      var a2 = '<dl>';
+      a2 += '<dt>Name:</dt>';
+      a2 += '<dd><input class="msname" type="text" placeholder="Name"></dd>';
+      a2 += '</dl><dl>';
+      a2 += '<dt>Comment:</dt>';
+      a2 += '<dd><input class="mscomment" type="text" placeholder="Comment"></dd>';
+      a2 += '</dl>';
+      $('[data-remodal-id=S4modal] .editconect').html(a2);
     },
     replaceimg: function(obj){
       var a = "";
@@ -381,7 +421,7 @@ var fileupload = {
           if(data.code == '10'){
             var inst = $('[data-remodal-id=S1modal]').remodal();
             inst.close();
-            window.location.reload();
+            dedit.ajaxItemsget();
           }
           popup.openwarning(data.msg);
         },
@@ -407,7 +447,7 @@ var fileupload = {
           if(data.code == '10'){
             var inst = $('[data-remodal-id=S2modal]').remodal();
             inst.close();
-            window.location.reload();
+            dedit.ajaxItemsget();
           }
           popup.openwarning(data.msg);
         },
@@ -434,7 +474,120 @@ var fileupload = {
           if(data.code == '10'){
             var inst = $('[data-remodal-id=S3modal]').remodal();
             inst.close();
-            window.location.reload();
+            dedit.ajaxItemsget();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    initAddlsild: function(sid){
+      var self = this;
+      self.buildS4();
+      $('[data-remodal-id=S4modal]').attr("sid", sid);
+      var inst = $('[data-remodal-id=S4modal]').remodal();
+      inst.open();
+    },
+    ajaxaddLitem: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/liteminsert",
+        type: "post",
+        dataType:'json',
+        data:{
+          imagepath: $('[data-remodal-id=S4modal] .editimg img').attr("src"),
+          comment: $('[data-remodal-id=S4modal] .editconect .mscomment').val(),
+          title: $('[data-remodal-id=S4modal] .editconect .msname').val(),
+          tid: $('[data-remodal-id=S4modal]').attr("sid"),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            var inst = $('[data-remodal-id=S4modal]').remodal();
+            inst.close();
+            dedit.ajaxItemsget();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    openDeletebox: function(obj){
+      var img = obj.find("img").clone();
+      var name = obj.children().eq(1).text();
+      var comment = obj.children().eq(2).text();
+      $('[data-remodal-id=S5modal] .editimg').html(img);
+      $('[data-remodal-id=S5modal] .editconect .ename').text(name);
+      $('[data-remodal-id=S5modal] .editconect .ecomment').text(comment);
+      $('[data-remodal-id=S5modal]').attr("sid", obj.attr("sid"));
+      var inst = $('[data-remodal-id=S5modal]').remodal();
+      inst.open();
+    },
+    ajaxDelLitem: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/litemdel",
+        type: "post",
+        dataType:'json',
+        data:{
+          mid: $('[data-remodal-id=S5modal]').attr("sid"),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            var inst = $('[data-remodal-id=S5modal]').remodal();
+            inst.close();
+            popup.openwarning(data.msg);
+            dedit.ajaxItemsget();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxnewRanking: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/newranking",
+        type: "post",
+        dataType:'json',
+        data:{
+          ranking: JSON.stringify(dedit.nlist),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            $(".changeranking").hide();
+            popup.openwarning(data.msg);
+            dedit.ajaxItemsget();
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unknow error");
+        }
+      });
+    },
+    ajaxItemsget: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/itemsget",
+        type: "post",
+        dataType:'json',
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            dmhtml.buildlist(data.data, $("#d-editshow"));
           }
           popup.openwarning(data.msg);
         },
@@ -455,6 +608,12 @@ var fileupload = {
       $("#d-editshow").on("click", ".d-lastslide>.d-sedit>i", function(){
         dedit.ajaxLitemGet($(this).parent().parent().attr("sid"));
       });
+      $("#d-editshow").on("click", ".d-slidbox>.d-slidbar>.d-add>i", function(){
+        self.initAddlsild($(this).parent().parent().attr("sid"));
+      });
+      $("#d-editshow").on("click", ".d-slidbox>.d-lastslide>.d-strush>i", function(){
+        self.openDeletebox($(this).parent().parent());
+      });
       $("body").on("click", ".d-imageremove", function(){
         fileupload.replaceimage($(this));
       });
@@ -470,7 +629,22 @@ var fileupload = {
       $("#S3modalsave").click(function(){
         self.ajaxltemUpdate();
       });
-
+      $("#S4modalsave").click(function(){
+        self.ajaxaddLitem();
+      });
+      $("#S5modalsave").click(function(){
+        self.ajaxDelLitem();
+      });
+      $("#rangkingsave").click(function(){
+        self.ajaxnewRanking();
+      });
+      $("#d-editshow").on("click", ".d-scbox",function(){
+        var sid = $(this).parent().parent().attr("sid");
+        if($(this).parent().parent().prev().prop("checked"))
+          dedit.openstatus[sid] = 0;
+        else
+          dedit.openstatus[sid] = 1;
+      });
     }
   }
 

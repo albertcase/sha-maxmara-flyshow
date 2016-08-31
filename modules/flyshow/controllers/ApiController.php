@@ -94,4 +94,22 @@ class ApiController extends Controller
       $response->data = $form->doData();
       return $response;
     }
+
+    public function actionLitemdel(){
+      $form = new Forms\litemDel();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionNewranking(){
+      $form = new Forms\newRanking();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
 }
