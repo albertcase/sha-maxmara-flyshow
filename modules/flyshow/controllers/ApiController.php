@@ -8,12 +8,20 @@ use app\modules\flyshow\Forms as Forms;
 
 class ApiController extends Controller
 {
-    public function actionIndex(){
-      return $this->render('/main/index');
+    public function beforeAction($action){
+      if($action->actionMethod != 'actionBacklogin'){
+        if(!\Yii::$app->session->has('user')){
+          $action->actionMethod = 'actionNotlogin';
+        }
+      }
+      return parent::beforeAction($action);
     }
 
-    public function actionBankend(){
-      return $this->render('/main/index');
+    public function actionNotlogin(){
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = array('code' => '2','msg' => 'please login');
+      return $response;
     }
 
     public function actionMitemupdate(){
@@ -110,6 +118,23 @@ class ApiController extends Controller
       $response = \Yii::$app->response;
       $response->format = \yii\web\Response::FORMAT_JSON;
       $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionBacklogin(){
+      $form = new Forms\backLogin();
+      $form->initPost();
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = $form->doData();
+      return $response;
+    }
+
+    public function actionBacklogout(){
+      \Yii::$app->session->remove('user');
+      $response = \Yii::$app->response;
+      $response->format = \yii\web\Response::FORMAT_JSON;
+      $response->data = array('code' => '10', 'msg' => 'logout success');
       return $response;
     }
 }

@@ -90,10 +90,34 @@ var fileupload = {
 };
 
 (function($, popup){
+  var main = {
+    ajaxLogin: function(){
+      popup.openloading();
+      $.ajax({
+        url: "/api/backlogin",
+        type: "post",
+        dataType:'json',
+        data:{
+          username: $("#name").val(),
+          password: $("#password").val(),
+        },
+        success: function(data){
+          popup.closeloading();
+          if(data.code == '10'){
+            setTimeout(function(){window.location.reload()}, 2000);
+          }
+          popup.openwarning(data.msg);
+        },
+        error: function(){
+          popup.closeloading();
+          popup.openwarning("unkonw error");
+        }
+      });
+    }
+  };
   $(function(){
     $("#loginsubmit").click(function(){
-      popup.openwarning("login error");
-      window.location.reload();
+      main.ajaxLogin();
     });
   });
 })(jQuery, popup);
@@ -220,6 +244,7 @@ var fileupload = {
       obj.css({"top": top+'px', "height": self.sheight, 'width': self.swidth, "position": "absolute"});
     },
     movfun: function(e){
+      e.preventDefault();
       main.dragmove(e,$(".d-sdragmove"));
     },
     removmove: function(){
@@ -649,7 +674,8 @@ var fileupload = {
   }
 
   $(function(){
-    dmhtml.buildlist(pagecode, $("#d-editshow"));
+    if($("#d-editshow").html() != undefined)
+      dmhtml.buildlist(pagecode, $("#d-editshow"));
     main.onload();
     dedit.onload();
   });

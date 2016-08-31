@@ -49,5 +49,10 @@
 <!-- warningpopup -->
 <div id="warningpopup"></div>
 <!-- warningpopup end -->
+<!-- warningpopup -->
+<div id="loadingpopup" style="display:none">
+	<div class="spinner"></div>
+</div>
+<!-- warningpopup end -->
 </body>
 </html>
