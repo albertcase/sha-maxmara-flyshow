@@ -4,13 +4,13 @@ var shareArr = {
     "_desc_friend": "快人一步赢取你的Berluti新款鞋履！",    // 分享好友的描述
     "_link": window.location.href,    //分享的连接
     "_imgUrl": "http://" + window.location.host + "/vstyle/fasttrack/img/share.jpg",   //分享的图片
-    "_url": window.location.href.split("#")[0]//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
+    "_url": encodeURIComponent(window.location)//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
 }
 
 var pfun = {
     init: function(){
         var self = this;
-        self.ajaxFun("GET", "/sharetoken?url=", {"url": encodeURIComponent(shareArr["_url"])}, "jsonp", function(data){
+        self.ajaxFun("GET", "/sharetoken?url=", {"url": shareArr["_url"]}, "jsonp", function(data){
             self.wechatFun(data.jssdk.appid, data.jssdk.time, data.jssdk.noncestr, data.jssdk.sign);
         });
     },
