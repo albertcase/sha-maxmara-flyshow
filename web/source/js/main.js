@@ -136,8 +136,8 @@ var fileupload = {
         a += '<div>'+data.name+'</div>';
       if(data.hasOwnProperty("comment"))
         a += '<div>'+data.comment+'</div>';
-      a += '<div class="d-sedit"><i>edit</i></div>';
       a += '<div class="d-add"><i>addsub</i></div>';
+      a += '<div class="d-sedit"><i>edit</i></div>';
       return a;
     },
     subslidbar: function(data){

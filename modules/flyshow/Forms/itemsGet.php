@@ -26,6 +26,51 @@ class itemsGet extends Model
         return array('code' => '11', 'msg' => 'input error');//request field error
     }
 
+    public function frontData(){
+      $_db = new database();
+      if($keys = $_db->searchData(array() ,array(), 'flyshow')){
+        $hier = $_db->searchData(array() ,array(), 'hierarchy');
+        return array(
+          'code' => '10',
+          'data' => $this->frontFmt($keys, $hier),
+          'msg' => 'success'
+        );
+      }
+      return array(
+        'code' => '9',
+        'msg' => 'there are not any slide show data',
+        'data' => array()
+      );
+    }
+
+    public function frontFmt($keys, $hier){
+      $list =  $this->sliceFmt($keys, $hier);
+      $out = array();
+      $out['0'] = array();
+      if(isset($list['0'])){
+        $out = array_merge($out, $list['0']["son"]);
+      }
+      unset($list['0']["son"]);
+      $out['0'] = $list[0];
+      return $this->changeKeyname($out);
+    }
+
+    public function changeKeyname($keys){
+      $out = array();
+      if(!is_array($keys))
+        return $keys;
+      foreach($keys as $x => $_val){
+        if($x == '0')
+          $x = '0';
+        if($x == 'name')
+          $x = 'title';
+        if($x == 'path')
+          $x = 'img';
+        $out[$x] = $this->changeKeyname($_val);
+      }
+      return $out;
+    }
+
     public function updateall(){
       $_db = new database();
       if($keys = $_db->searchData(array() ,array(), 'flyshow')){
