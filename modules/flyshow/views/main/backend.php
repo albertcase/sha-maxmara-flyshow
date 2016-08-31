@@ -35,92 +35,11 @@
   </div>
   <div class = "editslidshow">
     <div> Edit Slide Show</div>
+		<div class="changeranking">
+			<span>Do your want save the new ranking ?</span><button id="rangkingsave" class="remodal-confirm" style="float:right">SAVE</button>
+		</div>
     <div id="d-editshow">
-			<input id='s1' type="checkbox" class="d-scbu d-scboxinput" />
-      <div class="d-slidbar">
-        <div>
-					<label for="s1" class="d-scbox">
-						<b class="d-scbu scsleft">▷</b>
-						<b class="d-scbu scsdown">▽</b>
-					</label>
-				</div>
-				<div><img src="/vstyle/img/homepage.jpg"/></div>
-        <div>封面</div>
-				  <div>封面2</div>
-				<div class="d-sedit"><i>edit</i></div>
-      </div>
-			<div class="d-slidbox">
-				<input id='s2' type="checkbox" class="d-scbu d-scboxinput" />
-				<div class="d-slidbar">
-					<div>
-						<label for="s2" class="d-scbox">
-							<b class="d-scbu scsleft">▷</b>
-							<b class="d-scbu scsdown">▽</b>
-						</label>
-					</div>
-					<div><img src="/vstyle/img/homepage.jpg"/></div>
-	        <div>封面</div>
-					<div class="d-sedit"><i>edit</i></div>
-				</div>
-				<div class="d-slidbox">
 
-				</div>
-				<!-- //scond -->
-				<input id='s3' type="checkbox" class="d-scbu d-scboxinput" />
-				<div class="d-slidbar">
-					<div>
-						<label for="s3" class="d-scbox">
-							<b class="d-scbu scsleft">▷</b>
-							<b class="d-scbu scsdown">▽</b>
-						</label>
-					</div>
-					<div><img src="/vstyle/img/homepage.jpg"/></div>
-	        <div>封面</div>
-					<div class="d-sedit"><i>edit</i></div>
-				</div>
-				<div class="d-slidbox">
-					<!-- lastd-slidbox -->
-					<div class="d-lastslide">
-						<div><img src="/vstyle/img/homepage.jpg"/></div>
-						<div>封面封面1</div>
-						<div>介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面</div>
-						<div class="d-sdrag"></div>
-						<div class="d-strush"><i>delete</i></div>
-						<div class="d-sedit"><i>edit</i></div>
-					</div>
-					<!-- lastd-slidboxend -->
-					<!-- lastd-slidbox -->
-					<div class="d-lastslide">
-						<div><img src="/vstyle/img/homepage.jpg"/></div>
-						<div>封面封面2</div>
-						<div>介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面</div>
-						<div class="d-sdrag"></div>
-						<div class="d-strush"><i>delete</i></div>
-						<div class="d-sedit"><i>edit</i></div>
-					</div>
-					<!-- lastd-slidboxend -->
-					<!-- lastd-slidbox -->
-					<div class="d-lastslide">
-						<div><img src="/vstyle/img/homepage.jpg"/></div>
-						<div>封面封面3</div>
-						<div>介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面</div>
-						<div class="d-sdrag"></div>
-						<div class="d-strush"><i>delete</i></div>
-						<div class="d-sedit"><i>edit</i></div>
-					</div>
-					<!-- lastd-slidboxend -->
-					<div class="d-lastslide">
-						<div><img src="/vstyle/img/homepage.jpg"/></div>
-						<div>封面封面4</div>
-						<div>介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面介绍封面</div>
-						<div class="d-sdrag"></div>
-						<div class="d-strush"><i>delete</i></div>
-						<div class="d-sedit"><i>edit</i></div>
-					</div>
-					<!-- lastd-slidboxend -->
-				</div>
-			</div>
-      <div></div>
     </div>
   </div>
 <div class="remodal-bg">
@@ -128,15 +47,11 @@
 	  <button data-remodal-action="close" class="remodal-close"></button>
 	  <h1>Edit First Page</h1>
 	  <div class="editimg">
-			<img src="/vstyle/img/homepage.jpg" />
-			<span>×</span>
+
 		</div>
 	  <br>
 		<div class="editconect">
-			<dl>
-				<dt>Name:</dt>
-				<dd><input class="sname" type="text" placeholder="Name"></dd>
-			</dl>
+
 		</div>
 		<br>
 	  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
@@ -147,15 +62,11 @@
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<h1>Edit</h1>
 		<div class="editimg">
-			<img src="/vstyle/img/homepage.jpg" />
-			<span>×</span>
+
 		</div>
 	  <br>
 		<div class="editconect">
-			<dl>
-				<dt>Name:</dt>
-				<dd><input class="sname" type="text" placeholder="Name"></dd>
-			</dl>
+
 		</div>
 		<br>
 		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
@@ -166,22 +77,61 @@
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<h1>Edit</h1>
 		<div class="editimg">
-			<input type="file" />
+
 		</div>
 	  <br>
 		<div class="editconect">
-			<dl>
-				<dt>Name:</dt>
-				<dd><input class="sname" type="text" placeholder="Name"></dd>
-			</dl>
+
 		</div>
 		<br>
 		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
 		<button id="S3modalsave" class="remodal-confirm">SAVE</button>
 	</div>
+	<!-- s3 -->
+	<div class="remodal" data-remodal-id="S4modal">
+		<button data-remodal-action="close" class="remodal-close"></button>
+		<h1>Edit</h1>
+		<div class="editimg">
+
+		</div>
+		<br>
+		<div class="editconect">
+
+		</div>
+		<br>
+		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+		<button id="S4modalsave" class="remodal-confirm">SAVE</button>
+	</div>
+	<!-- s4 -->
+	<div class="remodal" data-remodal-id="S5modal">
+		<button data-remodal-action="close" class="remodal-close"></button>
+		<h1>COMFIRM DELETE</h1>
+		<div class="editimg">
+<!-- image -->
+		</div>
+		<br>
+		<div class="editconect">
+			<dl>
+				<dt>Name:</dt>
+				<dd class="ename"></dd>
+			</dl>
+			<dl>
+				<dt>Comment:</dt>
+				<dd  class="ecomment"></dd>
+			</dl>
+		</div>
+		<br>
+		<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+		<button id="S5modalsave" class="remodal-confirm">DELETE</button>
+	</div>
 </div>
 <!-- warningpopup -->
 <div id="warningpopup"></div>
+<!-- warningpopup end -->
+<!-- warningpopup -->
+<div id="loadingpopup" style="display:none">
+	<div class="spinner"></div>
+</div>
 <!-- warningpopup end -->
 </body>
 </html>

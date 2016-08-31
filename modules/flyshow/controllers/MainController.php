@@ -49,7 +49,7 @@ class MainController extends Controller
     }
 
     public function actionBackend(){
-      if(!\Yii::$app->session->has('user')){
+      if(\Yii::$app->session->has('user')){
         $form = new Forms\itemsGet();
         $data = $form->doData();
         if($data['code'] == '10')
