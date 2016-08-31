@@ -119,7 +119,7 @@ $(function(){
 		$(".swiperCover").on("click", function(){
 			var swiperNum = parseInt($(this).parent(".swiper-wrapper").attr("data-num")-1);
 			//swiperV[swiperNum].slideTo(1, 600, false);  //切换到第一个slide，速度为1秒//切换到第一个slide，速度为1秒
-			swiperV[swiperNum].slideTo(2, 600, false);
+			swiperV[swiperNum].slideTo(2, 200, false);
 		})
 
 	});

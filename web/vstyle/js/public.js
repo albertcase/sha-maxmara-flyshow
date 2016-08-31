@@ -4,14 +4,14 @@ var shareArr = {
     "_desc_friend": "快人一步赢取你的Berluti新款鞋履！",    // 分享好友的描述
     "_link": window.location.href,    //分享的连接
     "_imgUrl": "http://" + window.location.host + "/vstyle/fasttrack/img/share.jpg",   //分享的图片
-    "_url": window.location.href.split("#")[0]//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
+    "_url": encodeURIComponent(window.location)//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
 }
 
 var pfun = {
     init: function(){
         var self = this;
-        self.ajaxFun("GET", "/weixin/jssdk", {"url": shareArr["_url"]}, "json", function(data){
-            self.wechatFun(data.appid, data.time, data.noncestr, data.sign);
+        self.ajaxFun("GET", "http://maxmara.samesamechina.com/sharetoken?url=" + shareArr["_url"], "", "jsonp", function(data){
+            self.wechatFun(data.jssdk.appid, data.jssdk.time, data.jssdk.noncestr, data.jssdk.sign);
         });
     },
     loadFn: function(arr , fn , fn2){
@@ -92,7 +92,7 @@ var pfun = {
                     //  alert('用户点击发送给朋友');
                 },
                 success: function (res) {
-                    _hmt.push(['_trackEvent', 'share', 'ShareAppMessage']);
+                    //_hmt.push(['_trackEvent', 'share', 'ShareAppMessage']);
                     //  alert('已分享');
                 },
                 cancel: function (res) {
@@ -111,7 +111,7 @@ var pfun = {
                 link: shareArr._link,
                 imgUrl: shareArr._imgUrl,
                 trigger: function (res) {
-                    _hmt.push(['_trackEvent', 'share', 'ShareTimeline']);
+                    //_hmt.push(['_trackEvent', 'share', 'ShareTimeline']);
                     //   alert('用户点击分享到朋友圈');
                 },
                 success: function (res) {
