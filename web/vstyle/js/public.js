@@ -50,7 +50,7 @@ var pfun = {
     },
     wechatFun: function(_appId, _timestamp, _nonceStr, _signature){  //分享函数
         wx.config({
-            debug: false,
+            debug: true,
             appId: _appId,
             timestamp: _timestamp,
             nonceStr: _nonceStr,
