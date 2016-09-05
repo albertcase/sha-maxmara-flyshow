@@ -31,7 +31,7 @@ class fileUpload extends Model
     }
 
     public function updateall(){
-      $newpath = 'upload/img/' . uniqid() . '.' . $this->uploadfile->extension;
+      $newpath = 'upload/img_nocmps/' . uniqid() . '.' . $this->uploadfile->extension;
       if($this->uploadfile->saveAs($newpath));
         return array(
           'code' => '10',
