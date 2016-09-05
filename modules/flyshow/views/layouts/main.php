@@ -38,7 +38,7 @@ AppAsset::register($this);
 <script type="text/javascript" src="/vstyle/js/swiper.min.js"></script>
 <script type="text/javascript" src="/vstyle/js/public.js"></script>
 
-<div class="loading">
+<!-- <div class="loading">
 	<div class="cssload-loader">
 		<div></div>
 		<div></div>
@@ -46,6 +46,19 @@ AppAsset::register($this);
 		<div></div>
 		<div></div>
 	</div>
+</div> -->
+<div class="loading">
+	<div class="loadingCon">
+		<img src="/vstyle/img/logo.png" width="100%" />
+		<span>Loading...<em>0</em>%</span>
+	</div>
+	<!-- <div class="loader">
+	    <div class="loader-inner"></div>
+	    <div class="loader-inner"></div>
+	    <div class="loader-inner"></div>
+	    <div class="loader-inner"></div>
+	    <div class="loader-inner"></div>
+	</div> -->
 </div>
 
 <?= $content ?>

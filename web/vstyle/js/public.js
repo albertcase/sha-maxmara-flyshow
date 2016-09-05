@@ -1,7 +1,7 @@
 var shareArr = {
-    "_title": '快人一步赢取你的Berluti新款鞋履！', //分享标题
-    "_desc": "快人一步赢取你的Berluti新款鞋履！",    // 分享朋友圈的描述
-    "_desc_friend": "快人一步赢取你的Berluti新款鞋履！",    // 分享好友的描述
+    "_title": 'maxmara 分享标题 -- 测试', //分享标题
+    "_desc": "maxmara 分享朋友圈的描述 -- 测试",    // 分享朋友圈的描述
+    "_desc_friend": "maxmara 分享好友的描述 -- 测试",    // 分享好友的描述
     "_link": window.location.href,    //分享的连接
     "_imgUrl": "http://" + window.location.host + "/vstyle/fasttrack/img/share.jpg",   //分享的图片
     "_url": encodeURIComponent(window.location)//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
@@ -153,7 +153,8 @@ var pfun = {
             loadCallback();
             
         } , function (p){
-            console.log(p);
+            $(".loading em").html(p);
+            //console.log(p);
         });
     }
 
