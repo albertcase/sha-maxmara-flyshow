@@ -89,7 +89,6 @@ var pfun = {
                 link: shareArr._link,
                 imgUrl: shareArr._imgUrl,
                 trigger: function (res) {
-                    alert(6);
                     //  alert('用户点击发送给朋友');
                 },
                 success: function (res) {
