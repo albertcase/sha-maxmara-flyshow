@@ -34,13 +34,14 @@ class fileUpload extends Model
       $image = uniqid() . '.' . $this->uploadfile->extension;
       $newpath = 'upload/img_nocmps/' . $image;
       $outpath = 'upload/img/' . $image;
-      shell_exec('convert -resize "600>" '.dirname(__FILE__).'/../../../web/upload/img_nocmps/'. $image.' '.dirname(__FILE__).'/../../../web/upload/img/'. $image );
-      if($this->uploadfile->saveAs($newpath));
+      if($this->uploadfile->saveAs($newpath)){
+        shell_exec('convert -resize "600>" '.dirname(__FILE__).'/../../../web/upload/img_nocmps/'. $image.' '.dirname(__FILE__).'/../../../web/upload/img/'. $image );
         return array(
           'code' => '10',
           'path' => '/'.$outpath,
           'msg' => 'upload success',
         );
+      }
       return array(
         'code' => '9',
         'msg' => 'upload failed',
