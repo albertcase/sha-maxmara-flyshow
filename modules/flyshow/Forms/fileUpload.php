@@ -31,13 +31,17 @@ class fileUpload extends Model
     }
 
     public function updateall(){
-      $newpath = 'upload/img/' . uniqid() . '.' . $this->uploadfile->extension;
-      if($this->uploadfile->saveAs($newpath));
+      $image = uniqid() . '.' . $this->uploadfile->extension;
+      $newpath = 'upload/img_nocmps/' . $image;
+      $outpath = 'upload/img/' . $image;
+      if($this->uploadfile->saveAs($newpath)){
+        shell_exec('convert -resize "600>" '.dirname(__FILE__).'/../../../web/upload/img_nocmps/'. $image.' '.dirname(__FILE__).'/../../../web/upload/img/'. $image );
         return array(
           'code' => '10',
-          'path' => '/'.$newpath,
+          'path' => '/'.$outpath,
           'msg' => 'upload success',
         );
+      }
       return array(
         'code' => '9',
         'msg' => 'upload failed',
