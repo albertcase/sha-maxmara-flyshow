@@ -170,8 +170,8 @@ var fileupload = {
           a += '<div class="d-slidbar" sid="'+data[i].id+'">';
           a += "<div>";
           a += "<label for='s"+d+i+"' class='d-scbox'>";
-          a += '<b class="d-scbu scsleft">▷</b>';
-          a += '<b class="d-scbu scsdown">▽</b>';
+          a += '<b class="d-scbu scsleft">▽</b>';
+          a += '<b class="d-scbu scsdown">▷</b>';
           a += '</label>';
           a += '</div>';
           a += self.mcontect(data[i]);

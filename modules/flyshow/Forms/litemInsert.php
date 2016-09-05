@@ -19,10 +19,10 @@ class litemInsert extends Model
             ['imagepath', 'required'],
 
             ['title', 'filter', 'filter' => 'trim'],
-            ['title', 'required'],
+            // ['title', 'required'],
 
             ['comment', 'filter', 'filter' => 'trim'],
-            ['comment', 'required'],
+            // ['comment', 'required'],
 
             ['tid', 'filter', 'filter' => 'trim'],
             ['tid', 'required'],

@@ -13,7 +13,7 @@ class fileUpload extends Model
     public function rules()
     {
         return [
-          [['uploadfile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+          [['uploadfile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 

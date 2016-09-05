@@ -19,10 +19,10 @@ class litemUpdate extends Model
             ['imagepath', 'required'],
 
             ['title', 'filter', 'filter' => 'trim'],
-            ['title', 'required'],
+            // ['title', 'required'],
 
             ['comment', 'filter', 'filter' => 'trim'],
-            ['comment', 'required'],
+            // ['comment', 'required'],
 
             ['mid', 'filter', 'filter' => 'trim'],
             ['mid', 'required'],
