@@ -1,5 +1,5 @@
 <?php
-require './Zebra_Image.php';
+require dirname(__FILE__).'/Zebra_Image.php';
 
 class MyZebraImage{
 
