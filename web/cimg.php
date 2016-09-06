@@ -4,6 +4,7 @@ require '../models/MyZebraImage.php';
 // url = style=w_$width,h_$height&image=$path
 $path = $_GET['image']?$_GET['image']:'';
 $style = $_GET['style']?$_GET['style']:'';
+$path = ltrim($path, '/');
 if(strpos(realpath($path),dirname(__FILE__)) === false){//file not in the up folder
   Header ('Content-type:image/jpg');
   print file_get_contents("source/img/unknowimage.jpg");
