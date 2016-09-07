@@ -11,6 +11,15 @@ if(strpos(realpath($path),dirname(__FILE__)) === false){//file not in the up fol
   exit;
 }
 
+if(isset($_SERVER['HTTP_REFERER'])){// refuse cross-domain request
+  preg_match_all("/^http[s]?:\/\/(.*)\/.*/", $_SERVER['HTTP_REFERER'], $host, PREG_SET_ORDER);
+  if($host['0']['1'] != $_SERVER['HTTP_HOST']){
+    Header ('Content-type:image/jpg');
+    print file_get_contents("source/img/unknowimage.jpg");
+    exit;
+  }
+}
+
 if(!file_exists($path)){//not exist
   Header ('Content-type:image/jpg');
   print file_get_contents("source/img/unknowimage.jpg");
