@@ -29,7 +29,7 @@ class MyZebraImage{
   }
 
   public function checkImagetype(){
-    return substr($this->zebra_image->source_path, strrpos($this->zebra_image->source_path, '.') + 1);
+    return strtolower(substr($this->zebra_image->source_path, strrpos($this->zebra_image->source_path, '.') + 1));
   }
 
   public function getImagename(){

@@ -26,6 +26,13 @@ if(!file_exists($path)){//not exist
   exit;
 }
 
+$image = new MyZebraImage($path);
+if(!in_array($image->checkImagetype(), array('jpg','png','jpeg', 'jpe', 'gif', 'bmp'))){///efuse other ext
+  Header ('Content-type:image/jpg');
+  print file_get_contents("source/img/unknowimage.jpg");
+  exit;
+}
+
 $ar = explode(",", $style);
 $out = array();
 foreach($ar as $x){
@@ -41,7 +48,6 @@ if(isset($out['w']))
 if(isset($out['h']))
   $outpath = $outpath.'h'.$out['h'];
 
-$image = new MyZebraImage($path);
 Header ('Content-type:'.$image->mimeType($image->checkImagetype()));
 if($outpath == $opath || !file_exists($outpath)){
   print file_get_contents($path);
