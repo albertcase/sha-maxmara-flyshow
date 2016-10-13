@@ -88,7 +88,7 @@ $(function(){
 
 
 	pfun.loadingFnDoing(boxVal["allImg"], function(e){
-		var swiperH = new Swiper('.swiper-container-h', {
+		var swiperH = new Swiper('.swiper-container-h', {  //横
 		    paginationClickable: true,
 		    spaceBetween: 50,
 		    direction: 'vertical',
@@ -108,7 +108,7 @@ $(function(){
         	}
 		});
 
-		var swiperV = new Swiper('.swiper-container-v', {
+		var swiperV = new Swiper('.swiper-container-v', {  //竖
 		    paginationClickable: true,
 		    spaceBetween: 50,
 		    loop: true
