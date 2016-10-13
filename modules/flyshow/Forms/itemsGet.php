@@ -64,8 +64,11 @@ class itemsGet extends Model
           $x = '0';
         if($x == 'name')
           $x = 'title';
-        if($x == 'path')
+        if($x == 'path'){
           $x = 'img';
+          $_val = ltrim($_val, '/');
+          $_val = "/cimg.php?style=w_600&image=".$_val;
+        }
         $out[$x] = $this->changeKeyname($_val);
       }
       return $out;

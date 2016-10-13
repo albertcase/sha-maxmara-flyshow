@@ -131,7 +131,7 @@ var fileupload = {
     mcontect: function(data){
       var a = "";
       if(data.hasOwnProperty("path"))
-        a += '<div><img src="'+data.path+'"/></div>';
+        a += '<div><img src="/cimg.php?style=w_400&image='+data.path+'"/></div>';
       if(data.hasOwnProperty("name"))
         a += '<div>'+data.name+'</div>';
       if(data.hasOwnProperty("comment"))
@@ -144,7 +144,7 @@ var fileupload = {
       var a = "";
         a += '<div class="d-lastslide" sid="'+data.id+'">';
         if(data.hasOwnProperty("path"))
-          a += '<div><img src="'+data.path+'"/></div>';
+          a += '<div><img src="/cimg.php?style=w_400&image='+data.path+'"/></div>';
         if(data.hasOwnProperty("name"))
           a += '<div>'+data.name+'</div>';
         if(data.hasOwnProperty("comment"))
