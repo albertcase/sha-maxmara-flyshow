@@ -40,6 +40,7 @@ class MainController extends Controller
       // );
       $form = new Forms\itemsGet();
       $data = $form->frontData();
+      unset($data["data"]['0']);
       return $this->render('index', array('data' => $data["data"]));
     }
 
